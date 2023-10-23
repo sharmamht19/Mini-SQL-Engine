@@ -108,6 +108,78 @@ Operations occur within the existing table:
   - Group data and apply aggregation functions.
   - If HAVING condition is met, store result in `groupedTable`.
 - Write final `groupedTable` results to a CSV file.
+# System Features and Implementation
+
+### PAGING
+
+**Approach:**  
+- Divide the system memory into blocks of 1024 Bytes each, referred to as pages.
+- Convert matrices to a size that fits within the page limit. For instance, a 16x16 matrix.
+- For larger matrices, decompose them into multiple 16x16 matrices, effectively storing them across various pages.
+- Organize these pages in a two-dimensional structure, facilitating retrieval and modifications.
+
+### BUFFER MANAGEMENT
+
+**Approach:**  
+- Implement a deque (double-ended queue) structure to represent the main memory buffer.
+- As new pages are loaded into memory, older pages (based on the FIFO policy) are evicted when the buffer limit is reached.
+- When retrieving a matrix, check the buffer for the respective pages. If not present, load the necessary page into the buffer and evict the oldest page.
+
+### ERROR HANDLING
+
+**Approach:**  
+- Before executing a command, perform a syntactic check to verify the command's structure and arguments.
+- If the syntactic check passes, proceed to the semantic check to ensure the operation's logical validity.
+- In case of an error, generate descriptive error messages to guide users to correct their input.
+
+### LOAD MATRIX
+
+**Approach:**  
+- Read the matrix data from the specified CSV file.
+- Divide the matrix into 16x16 chunks, or pages.
+- Load these pages into the memory buffer, evicting older pages if necessary following the FIFO policy.
+
+### PRINT MATRIX
+
+**Approach:**  
+- If the matrix size is smaller than 20x20, display the entire matrix.
+- If larger, extract and display only the first 20 rows and columns.
+- Provide visual indicators if a matrix is truncated during display.
+
+### TRANSPOSE MATRIX
+
+**Approach:**  
+- Using the memory buffer, retrieve matrix pages one by one.
+- Transpose each 16x16 matrix page in the buffer.
+- Store the transposed matrix back into the memory.
+
+### EXPORT MATRIX
+
+**Approach:**  
+- Retrieve the matrix from the memory pages.
+- Construct a complete matrix, combining pages if necessary.
+- Write the matrix data into the desired file format, such as CSV.
+
+### RENAME MATRIX
+
+**Approach:**  
+- Identify the matrix using its current name or metadata.
+- Update its name in the metadata and other associated references.
+- Ensure the renaming doesn't cause conflicts with existing matrix names.
+
+### CHECKSYMMETRY
+
+**Approach:**  
+- Extract matrix pages from memory and construct the matrix.
+- Compare each element (i, j) with the element (j, i) for the entire matrix.
+- If all such pairs match, the matrix is symmetric; otherwise, it's not.
+
+### COMPUTE
+
+**Approach:**  
+- Based on the specified operation, retrieve the necessary matrices from memory.
+- Perform the matrix operations, such as subtraction, multiplication, etc.
+- Store the result back into the memory, possibly evicting older pages if the buffer gets full.
 
 ### Assumptions
 
@@ -116,6 +188,12 @@ Operations occur within the existing table:
 - Syntax follows given document standards, including spaces.
 - Users are responsible for deleting resultant tables. Overwriting isn't permitted.
 - No integer overflow for SUM operations.
+- Each page has a fixed size of 1024 Bytes.
+- Matrices are stored as 16x16 chunks in pages.
+- Commands follow the specified syntax and semantics for proper functioning.
+- Matrices are distinct by names. Overwriting isn't permitted.
+- Larger matrices are decomposed into smaller pages and retrieved accordingly for operations.
+
 
 ### Learnings
 
@@ -124,10 +202,22 @@ Operations occur within the existing table:
 3. Management of large files and partial data access.
 4. Data persistence requires metadata and data updates on disk.
 5. Efficient data read-write with BufferManager.
+6. Efficient handling of matrix operations and transformations using a memory buffer and paging mechanism.
+7. Implementation of LOAD, PRINT, TRANSPOSE, and other commands utilizing the buffer management and error handling.
+8. Management and organization of matrices across multiple pages.
+9. Data persistence requires metadata management and updates in the system's memory.
+10. Effective interaction with external file formats like CSV during matrix import and export.
+
 
 ## Challenges
 
 During the development phase, the team encountered several challenges:
 - Loading extensive tables into main memory for operations.
-- Numerous code revisions during the B+ tree indexing implementation to accommodate edge test cases.
+- Numerous code revisions during the B+ tree indexing implementation to accommodate edge test cases
+- Properly segmenting and storing larger matrices across multiple pages.
+- Handling matrix transformations and operations when matrices span multiple pages.
+- Ensuring error handling covers a wide range of possible user inputs.
+- Balancing between buffer size and matrix size for optimized performance.
+- Adapting to matrices of varying sizes and ensuring seamless operation execution.
+
 
