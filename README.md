@@ -7,6 +7,7 @@ The Mini SQL Engine, codenamed "simpleRA", is a streamlined, integer-only relati
 ## Table of Contents
 
 - [Brief Overview](#brief-overview)
+- [Compilation Instructions](#compilation-instructions)
 - [Architecture](#architecture)
 - [Features](#features)
   * [Assignment Statements](#assignment-statements)
@@ -27,6 +28,31 @@ The Mini SQL Engine, codenamed "simpleRA", is a streamlined, integer-only relati
 
 SQL engines are pivotal components in recognizing and interpreting SQL commands for data interrogation within a relational database. The simpleRA, while limited in its feature set and syntax deviation from traditional SQL queries, emulates the procedural aspects of query execution. Unlike extensive SQL servers, it refrains from handling nested queries.
 
+## Compilation Instructions
+
+We use ```make``` to compile all the files and creste the server executable. ```make``` is used primarily in Linux systems, so those of you who want to use Windows will probably have to look up alternatives (I hear there are ways to install ```make``` on Windows). To compile
+
+```cd``` into the SimpleRA directory
+```
+cd SimpleRA
+```
+```cd``` into the soure directory (called ```src```)
+```
+cd src
+```
+To compile
+
+```bash
+make clean
+make
+```
+
+## To run
+
+Post compilation, an executable names ```server``` will be created in the ```src``` directory
+```bash
+./server
+```
 ## Architecture
 
 The core of simpleRA comprises of:
