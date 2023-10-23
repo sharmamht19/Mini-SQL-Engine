@@ -40,14 +40,14 @@ cd SimpleRA
 ```
 cd src
 ```
-To compile
+#### To compile
 
 ```bash
 make clean
 make
 ```
 
-## To run
+#### To run
 
 Post compilation, an executable names ```server``` will be created in the ```src``` directory
 ```bash
