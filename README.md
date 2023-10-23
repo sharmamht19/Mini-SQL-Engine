@@ -65,6 +65,64 @@ Operations occur within the existing table:
 - CLEAR
 - QUIT
 
+## Implementation Details
+
+### EXTERNAL SORTING
+
+**Approach:**  
+- Start with initializing sorting parameters from parsed query.
+- For each chunk of data in table (chunk size based on max rows per block):
+  - Sort data in-memory using given criteria.
+  - Write sorted data back to the table.
+- Use `externalSort()` for further sorting and merging.
+- Finalize sorted data.
+
+### JOIN
+
+**Approach:**  
+- Extract table names, join columns, and binary operator from parsed query.
+- Retrieve target tables from the Table Catalogue.
+- Create temporary tables and apply external sorting on join columns.
+- Create result table for storing JOIN operation results.
+- For each row in sorted tables:
+  - Compare and join based on provided binary operator.
+  - Store result in result table.
+- Finalize result table with updated metadata.
+
+### ORDER BY
+
+**Approach:**  
+- Create `sortedTable` for holding sorted data.
+- Copy data from original table to `sortedTable`.
+- Apply external sorting on `sortedTable` based on specified attributes.
+- Load sorted data back into table for further operations.
+
+### GROUP BY
+
+**Approach:**  
+- Extract group attributes, aggregation functions, and HAVING clause details from query.
+- Create and sort a temporary table based on group attribute.
+- For each row in sorted table:
+  - Group data and apply aggregation functions.
+  - If HAVING condition is met, store result in `groupedTable`.
+- Write final `groupedTable` results to a CSV file.
+
+### Assumptions
+
+- Comparisons and sorts are on integers (4 Bytes each). Support for larger strings can be added by adjusting byte size.
+- Cursors retrieve integer data.
+- Syntax follows given document standards, including spaces.
+- Users are responsible for deleting resultant tables. Overwriting isn't permitted.
+- No integer overflow for SUM operations.
+
+### Learnings
+
+1. Real-world application of external sorting and K-way merge.
+2. Efficient implementation of JOIN, GROUP BY, and ORDER BY commands using external sorting.
+3. Management of large files and partial data access.
+4. Data persistence requires metadata and data updates on disk.
+5. Efficient data read-write with BufferManager.
+
 ## Challenges
 
 During the development phase, the team encountered several challenges:
