@@ -1,0 +1,8 @@
+cross_SM <- CROSS Student Marks
+cross_SM1 <- SELECT Student_Stud_Id == Marks_Stud_Id FROM cross_SM
+d1 <- SELECT Maths_marks >= 70 FROM cross_SM1
+d2 <- SELECT Physics_marks > 60 FROM d1
+d3 <- SELECT Stud_age >= 16 FROM d2
+d4 <- SELECT Stud_age <= 18 FROM d3 
+D <- PROJECT Student_Stud_Id,Maths_marks,Physics_marks,Stud_age FROM d4
+PRINT D

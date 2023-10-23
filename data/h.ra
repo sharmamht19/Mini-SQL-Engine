@@ -1,0 +1,11 @@
+LOAD Student
+LOAD Advisor
+LOAD Marks
+h_cross <- CROSS Student Advisor
+h_new <- SELECT  Advisor_id == Adv_Id FROM h_cross
+h_curr <- SELECT  Advisor_id == 2 FROM h_new
+h_marks <- CROSS h_curr Marks
+h_updated <- SELECT  h_curr_Stud_Id == Marks_Stud_Id FROM h_marks
+h_final  <- SELECT  Maths_marks > 90 FROM h_updated
+H <- PROJECT Marks_Stud_Id FROM h_final
+PRINT H

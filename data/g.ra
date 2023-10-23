@@ -1,0 +1,8 @@
+LOAD Student
+LOAD Advisor
+LOAD Marks
+g_cross <- CROSS Student Advisor
+g_new <- SELECT  Advisor_id == Adv_Id FROM g_cross
+g_final  <- SELECT  Adv_age > 40 FROM g_new
+G <- PROJECT Stud_Id, Adv_Id FROM g_final
+PRINT G

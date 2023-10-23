@@ -1,0 +1,9 @@
+LOAD Student
+LOAD Advisor
+LOAD Marks
+e1 <- SELECT Stud_sex == 1 FROM Student
+e2 <- SELECT Advisor_id == 1 FROM e1
+cross_em <- CROSS e2 Marks
+e3 <- SELECT Maths_marks > 70 FROM cross_em
+E <- PROJECT Marks_Stud_Id,Maths_marks FROM e3
+PRINT E

@@ -1,0 +1,7 @@
+LOAD Student
+LOAD Advisor
+LOAD Marks
+AdvRes1 <- SELECT  Yrs_of_exp <= 4 FROM Advisor
+AdvRes3 <- SELECT  Salary > 300000 FROM AdvRes1
+AdvRes4 <- PROJECT Adv_Id,Yrs_of_exp FROM AdvRes3
+PRINT AdvRes4
