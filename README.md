@@ -51,6 +51,8 @@ Resultant in new table creations, these include:
 - CROSS
 - JOIN
 - SORT
+- GROUP BY
+- ORDER BY
 - DISTINCT
 
 ### Non-Assignment Statements
