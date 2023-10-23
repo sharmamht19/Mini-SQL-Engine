@@ -1,4 +1,4 @@
-Mini SQL Engine
+# Mini SQL Engine
 
 The Mini SQL Engine, codenamed "simpleRA", is a streamlined, integer-only relational database management system (RDBMS). While not as intricate as market-standard DBMS systems, simpleRA offers a compact yet efficient database solution implemented in C/C++.
 
