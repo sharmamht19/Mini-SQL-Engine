@@ -108,7 +108,6 @@ Operations occur within the existing table:
   - Group data and apply aggregation functions.
   - If HAVING condition is met, store result in `groupedTable`.
 - Write final `groupedTable` results to a CSV file.
-# System Features and Implementation
 
 ### PAGING
 
