@@ -12,15 +12,16 @@ The Mini SQL Engine, codenamed "simpleRA", is a streamlined, integer-only relati
 - [Features](#features)
   * [Assignment Statements](#assignment-statements)
   * [Non-Assignment Statements](#non-assignment-statements)
-- [Challenges](#challenges)
 - [Implementation Details](#implementation-details)
   * [EXTERNAL SORTING](#external-sorting)
   * [JOIN](#join)
   * [ORDER BY](#order-by)
   * [GROUP BY](#group-by)
 - [Relational Algebra Grammar](#relational-algebra-grammar)
+- [Limitations](#limitations)
 - [Assumptions](#assumptions)
 - [Learnings](#learnings)
+- [Challenges](#challenges)
 - [License](#license)
 - [Contribution](#contribution)
 
@@ -67,9 +68,9 @@ User interactions transpire through a two-fold process:
 1. **Parsing Stage**: The RDBMS initializes the process by parsing the SQL statement via syntactic and semantic parsers, ensuring syntax and semantic correctness.
 2. **Execution Stage**: The RDBMS proceeds to actualize the SQL statement utilizing executors.
 
-## Features
+## Features 
 
-simpleRA facilitates a multitude of SQL commands, categorized into assignment and non-assignment statements. A B+ tree indexing strategy enhances the speed of range queries.
+ Mini SQL Engine facilitates a multitude of SQL commands, categorized into assignment and non-assignment statements. A B+ tree indexing strategy enhances the speed of range queries
 
 ### Assignment Statements
 
@@ -271,7 +272,18 @@ rename_statement -> RENAME column_name TO column_name FROM relation_name
 source_statement -> SOURCE file_name
 
 ```
+## Limitations
 
+1. Relational Algebra Operators
+2. Integers Only
+3. No update operations
+4. No aggregate operations
+5. No nested queries
+6. No transaction management
+7. Single thread programming only
+8. No identifiers should have spaces in them
+
+   
 ## Assumptions
 
 - Comparisons and sorts are on integers (4 Bytes each). Support for larger strings can be added by adjusting byte size.
