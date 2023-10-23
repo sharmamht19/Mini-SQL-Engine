@@ -1,44 +1,12 @@
----
-marp: true
-theme: gaia
-class: invert
-backgroundColor: black
----
 
-# SimpleRA
-
-_A laughably-minimalist, integer-only, read-only Relational Database Management System that makes the author question why they ever bothered to write it up!_  
-  
-
-## _Data Systems, Monsoon 2020_
-
-19th August, 2020
-Wednesday
-
----
-
-### Important Features
-
-- Relational Algebra Operators
-- Integers Only
-- No update operations
-- No aggregate operations
-- No nested queries
-- No transaction management
-- Single thread programming only
-- No identifiers should have spaces in them
-
-
----
-
-### Commands
+# Commands
 
 There are 2 kinds of commands in this database.
 
 - Assignment statements
 - Non-assignment statements
 
-_Note: Not all operators have been implemented, some have been omitted for you to implement in later phases_
+_Note: Not all operators have been implemented, some have been omitted  to implement in later phases_
 
 ---
 
@@ -383,43 +351,6 @@ Run: `R <- SELECT a == 1 FROM A` with debugger
 Every function call is logged in file names "log"
 
 ---
-
-## Project*
-
-- Phase 1: Code Familiarity (to be released today/tomorrow max)
-- Phase 2: 2 Phase Merge Sort
-- Phase 3: Indexing
-- Phase 4: Indexing Optimized Operators
-- Phase 4: Optimisation (SOURCE)
-
-_Note: may include duplicate elimination_
-* Tentative
-
----
-
-## Project Rules
-
-- **Plagiarism: F**
-- Not sticking to submission guidelines will lead to penalties and at times to scoring 0
-- Project phases build on top of each other, failing to do one phase may hinder the rest
-- If for any reason you fail to complete the project on time, please mail the Prof directly for extensions and not the TAs, the TAs have no jurisdiction in these cases
-
----
-
-## Adminstrative Rules
-
-- No informal contact with the TAs, you may post on Moodle regarding any doubts. A forum will be created for the same
-- TA Hours have been updated on Moodle
-- If you need to contact the TAs for matters that don't concern the whole class you may mail us here - datasystems_tas_m20@IIITAPhyd.onmicrosoft.com
-
----
-
-## References
-
-- GitHub Repo - [SimpleRA](https://github.com/SimpleRA/SimpleRA)
-- Build and run instructions will be provided later
-
-
 
 
 
