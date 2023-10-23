@@ -21,6 +21,8 @@ The Mini SQL Engine, codenamed "simpleRA", is a streamlined, integer-only relati
 - [Relational Algebra Grammar](#relational-algebra-grammar)
 - [Assumptions](#assumptions)
 - [Learnings](#learnings)
+- [License](#license)
+- [Contribution](#contribution)
 
 ---
 
@@ -309,4 +311,11 @@ During the development phase, the team encountered several challenges:
 - Balancing between buffer size and matrix size for optimized performance.
 - Adapting to matrices of varying sizes and ensuring seamless operation execution.
 
+## Contribution
+
+Feel free to explore the source code repository, watch the demo video, and refer to the communication and architecture diagrams to get a better understanding of the `Mini SQL Engine`.
+
+## License
+
+MIT License.
 
